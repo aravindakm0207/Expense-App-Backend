@@ -106,7 +106,7 @@ const categoryCltr = require('./app/controllers/categories-ctrl');
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://expense-app-frontend-jegs.vercel.app/', // Update with your actual frontend URL
+    origin: 'https://expense-app-frontend-jegs.vercel.app', // Update with your actual frontend URL
     credentials: true
 }));
 configureDB();
