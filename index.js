@@ -104,13 +104,13 @@ const authenticateUser = require('./app/middlewares/authenticateUser');
 const expenseCltr = require('./app/controllers/expenses-ctrl');
 const categoryCltr = require('./app/controllers/categories-ctrl');
 
-//app.use(express.json());
+app.use(express.json());
 
 app.use(cors({
     origin: 'https://expense-app-frontend-jegs.vercel.app', // Update with your actual frontend URL
     credentials: true
 }));
-app.use(cors())
+//app.use(cors())
 configureDB();
 
 app.post('/users/register', checkSchema(userRegisterValidation), userCltr.register);
