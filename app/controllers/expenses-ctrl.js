@@ -100,7 +100,7 @@ expenseCltr.create = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { expenseDate, amount, description, categoryId } = req.body;
+    const { expenseDate, amount, description, categoryId,person } = req.body;
 
     try {
         const category = await Category.findById(categoryId);
@@ -108,7 +108,7 @@ expenseCltr.create = async (req, res) => {
             return res.status(400).send({ msg: 'Invalid Category ID' });
         }
 
-        const expense = new Expense({ expenseDate, amount, description, categoryId });
+        const expense = new Expense({ expenseDate, amount, description, categoryId ,person});
         await expense.save();
         res.status(201).send(expense);
     } catch (error) {
@@ -135,7 +135,7 @@ expenseCltr.update = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { expenseDate, amount, description, categoryId } = req.body;
+    const { expenseDate, amount, description, categoryId ,person} = req.body;
 
     try {
         const category = await Category.findById(categoryId);
@@ -143,7 +143,7 @@ expenseCltr.update = async (req, res) => {
             return res.status(400).send({ msg: 'Invalid Category ID' });
         }
 
-        const expense = await Expense.findByIdAndUpdate(req.params.id, { expenseDate, amount, description, categoryId }, { new: true });
+        const expense = await Expense.findByIdAndUpdate(req.params.id, { expenseDate, amount, description, categoryId,person}, { new: true });
         res.send(expense);
     } catch (error) {
         res.status(400).send(error);

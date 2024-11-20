@@ -4,6 +4,7 @@ const expenseSchema=new Schema({
     expenseDate:Date,
     amount:Number,
     description:String,
+    person:String,
     categoryId: { type: Schema.Types.ObjectId, 
     ref: 'Category'}
 
