@@ -126,7 +126,7 @@ app.get('/single-category/:id', categoryCltr.single);
 app.put('/update-category/:id', categoryCltr.update);
 app.delete('/removing-category/:id', categoryCltr.remove);
 
-app.post('/create-expenses', authenticateUser, checkSchema(expenseValidationSchema), expenseCltr.create);
+app.post('/create-expenses', authenticateUser,  expenseCltr.create);
 app.get('/all-expenses', expenseCltr.list);
 app.get('/single-expense/:id', expenseCltr.single);
 app.put('/update-expense/:id', authenticateUser, expenseCltr.update);
