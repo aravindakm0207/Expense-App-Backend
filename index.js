@@ -104,13 +104,18 @@ const authenticateUser = require('./app/middlewares/authenticateUser');
 const expenseCltr = require('./app/controllers/expenses-ctrl');
 const categoryCltr = require('./app/controllers/categories-ctrl');
 
-app.use(express.json());
+
+const employeeCtrl = require("./app/controllers/employee-ctrl");
+const projectCtrl = require("./app/controllers/project-ctrl");
+
+//app.use(express.json());
 
 app.use(cors({
     origin: 'https://expense-app-frontend-one.vercel.app', // Update with your actual frontend URL
     credentials: true
 }));
-//app.use(cors())
+
+app.use(cors())
 configureDB();
 
 app.post('/users/register', checkSchema(userRegisterValidation), userCltr.register);
@@ -131,6 +136,33 @@ app.get('/all-expenses', expenseCltr.list);
 app.get('/single-expense/:id', expenseCltr.single);
 app.put('/update-expense/:id', authenticateUser, expenseCltr.update);
 app.delete('/remove-expense/:id', expenseCltr.remove);
+
+
+
+
+
+
+
+app.post("/projects", projectCtrl.create); // Create project
+app.get("/projects", projectCtrl.list); // Get all projects
+app.post("/projects/add-employee", projectCtrl.addEmployee); // Add employee to project
+app.post("/projects/remove-employee", projectCtrl.removeEmployee); // Remove employee from project
+app.put("/projects/:projectId", projectCtrl.update); // Edit/Update project
+app.delete("/projects/:projectId", projectCtrl.delete); // Delete project
+
+
+
+app.post("/employees", employeeCtrl.create); // Create employee
+app.get("/employees", employeeCtrl.list); // Get all employees
+app.put("/employees/:employeeId", employeeCtrl.update); 
+app.delete("/employees/:employeeId", employeeCtrl.delete); 
+
+
+
+
+
+
+
 
 
 // Error handling middleware
